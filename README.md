@@ -54,33 +54,57 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `question`
 
-**Definition:**
+**Definition: the poster sincerely wants an answer, whether a fact, a
+first hand experience or a recommendation, and a serious informative
+reply would satisfy them.**
 
-**Example 1:**
->
+**Example 1:** \> Is this difference in 2017 cars to 2025 cars accurate
+or is it a Bburago inaccuracy?
 
-**Example 2:**
->
+**Example 2:** \> Life of a formula 1 engineer: Any F1 engineer (or
+former) out there? I'd like to know about work-life balance in the
+circus for factory guys and trackside engineers.
 
-### `label_two`
+### `news`
 
-**Definition:**
+**Definition: the post passes along information from an outside source,
+such as an announcement, an article or a data point with little or no
+stance from the poster.**
 
-**Example 1:**
->
+**Example 1:** \> Pirelli have chosen to go one step softer on the hard
+tyre for every race of the next triple header, compared to last year
 
-**Example 2:**
->
+**Example 2:** \> Jos Verstappen was hyped like Max - until it all went
+wrong
+
+### `take`
+
+**Definition: the poster is expressing their own view, joke or feeling,
+and the post would still make sense if nobody replied with
+information.**
+
+**Example 1:** \> F1 should try out their luck at Le Mans
+
+**Example 2:** \> Why don't FIA give Safety Car duty to Ferrari for
+once?
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels: question vs take**
 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+
+If the post's main point is a question to the community — asking for a
+fact, a first-hand experience, or an opinion or prediction ("Who wins
+P2?", "Are we too harsh on Ferrari's race strategy?") — it's `question`,
+even if the poster gives their own view along the way. If the main point
+is the poster's own claim and a "What do you think?" is only tacked on
+at the end ("Hot take: RBR are deciding between Lindblad and Tsolov…
+What do y'all think?"), it's `take`. Rhetorical questions, jokes and
+complaints are `take` too ("Why don't FIA give Safety Car duty to
+Ferrari for once?").
 
 
 
