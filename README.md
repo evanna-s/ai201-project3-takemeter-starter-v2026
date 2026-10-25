@@ -331,18 +331,66 @@ the other 229 against my decision rule, but I did read all of them.
 
 | Measure          | Baseline | Trained | Difference |
 |------------------|----------|---------|------------|
-| Overall accuracy |          |         |            |
-| Macro F1         |          |         |            |
-| F1 — `label_one` |          |         |            |
-| F1 — `label_two` |          |         |            |
+| Overall accuracy | 0.600    | 0.525   | -0.075     |
+| Macro F1         | 0.419    | 0.281   | -0.138     |
+| F1 — `news`      | 0.731    | 0.690   | -0.041     |
+| F1 — `question`  | 0.526    | 0.154   | -0.372     |
+| F1 — `take`      | 0.000    | 0.000   | +0.000     |
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
+I predict my trained model will beat the baseline only on `news`,
+because news posts share surface cues (source tags like “[The Race]”,
+numbers, standings) that 183 training examples can pick up. I expect the
+baseline to win on `question` and `take`, because that boundary depends
+on what the poster intends, which my written definitions spell out and
+the trained model only saw in about 90 examples.
+
+**How the prediction held up:** wrong on `news`, where the baseline beat
+the trained model too (0.731 vs 0.690). Right that the baseline would
+win on `question` (0.526 vs 0.154). Wrong on `take`: neither model got a
+single `take` right.
+
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
+
+The zero-shot baseline beat my fine-tuned model on every measure. My
+fine-tuning added nothing; it made things worse.
+
+The biggest gap is `question` (0.526 vs 0.154). The baseline could read
+my definition of "sincerely wants an answer", while the trained model
+never learned to separate questions from news.
+
+Both models scored 0.000 on `take`, but the bare-names run below shows
+that's not because `take` is impossible to find. My definitions raised
+accuracy by 0.075 only by pushing posts toward `news` , and they cost
+0.307 on `question` and all 0.414 on `take`. Measured by accuracy, my
+definitions were worth +0.075; measured by macro F1, they were worth
+−0.120. So accuracy alone would have told me my definitions helped, when
+for my two minority labels they hurt.
+
+My best guess at why: the `take` definition is phrased mostly by what
+the post is *not* "would still make sense if nobody replied with
+information", and the `news` definition is broad enough to describe
+almost any post that mentions a fact.
+
+**Definitions vs. bare label names** (same 40 held-out posts, same
+zero-shot model, `facebook/bart-large-mnli`):
+
+| Measure | Baseline, bare names | Baseline, my definitions | Trained | Definitions worth |
+|--------------|--------------|----------------|--------------|--------------|
+| Overall accuracy | 0.525 | 0.600 | 0.525 | +0.075 |
+| Macro F1 | 0.539 | 0.419 | 0.281 | −0.120 |
+| F1 — `news` | 0.370 | 0.731 | 0.690 | +0.361 |
+| F1 — `question` | 0.833 | 0.526 | 0.154 | −0.307 |
+| F1 — `take` | 0.414 | 0.000 | 0.000 | −0.414 |
+
+The baseline in the main table above is the run with my definitions
+(`baseline_results.json`); the bare-names run is in
+`baseline_bare.json`.
 
 ------------------------------------------------------------------------
 
