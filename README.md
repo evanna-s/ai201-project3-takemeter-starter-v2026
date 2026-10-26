@@ -299,9 +299,9 @@ Every label has at least 8 in test, but `take` only just clears it with
 
 **Moment 3**
 
--   *What I asked for:* I asked Claude to to format this and criteria
-    file for me: adding the quotes as blocks and clean out any grammar
-    mistake.
+-   *What I asked for:* I asked Claude to format this and criteria file
+    for me: adding the quotes as blocks and clean out any grammar
+    mistake. (In unit 6 too)
 -   *What came back:* Claude helped part of the formatting, but somehow
     messed up most of it.
 -   *What I changed:* I cleaned the format again by myself.
@@ -342,11 +342,11 @@ the other 229 against my decision rule, but I did read all of them.
      prediction made afterwards isn't one. -->
 
 I predict my trained model will beat the baseline only on `news`,
-because news posts share surface cues (source tags like “[The Race]”,
-numbers, standings) that 183 training examples can pick up. I expect the
-baseline to win on `question` and `take`, because that boundary depends
-on what the poster intends, which my written definitions spell out and
-the trained model only saw in about 90 examples.
+because news posts share surface cues that 183 training examples can
+pick up. I expect the baseline to win on `question` and `take`, because
+that boundary depends on what the poster intends, which my written
+definitions spell out and the trained model only saw in about 90
+examples.
 
 **How the prediction held up:** wrong on `news`, where the baseline beat
 the trained model too (0.731 vs 0.690). Right that the baseline would
@@ -357,8 +357,8 @@ single `take` right.
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
 
-The zero-shot baseline beat my fine-tuned model on every measure. My
-fine-tuning added nothing; it made things worse.
+The baseline beat my fine-tuned model on every measure. My fine-tuning
+made things worse.
 
 The biggest gap is `question` (0.526 vs 0.154). The baseline could read
 my definition of "sincerely wants an answer", while the trained model
@@ -366,22 +366,17 @@ never learned to separate questions from news.
 
 Both models scored 0.000 on `take`, but the bare-names run below shows
 that's not because `take` is impossible to find. My definitions raised
-accuracy by 0.075 only by pushing posts toward `news` , and they cost
-0.307 on `question` and all 0.414 on `take`. Measured by accuracy, my
-definitions were worth +0.075; measured by macro F1, they were worth
-−0.120. So accuracy alone would have told me my definitions helped, when
-for my two minority labels they hurt.
+accuracy by 0.075 only by pushing posts toward `news`.
 
 My best guess at why: the `take` definition is phrased mostly by what
-the post is *not* "would still make sense if nobody replied with
-information", and the `news` definition is broad enough to describe
+the post is *not*, and the `news` definition is broad enough to describe
 almost any post that mentions a fact.
 
 **Definitions vs. bare label names** (same 40 held-out posts, same
 zero-shot model, `facebook/bart-large-mnli`):
 
 | Measure | Baseline, bare names | Baseline, my definitions | Trained | Definitions worth |
-|--------------|--------------|----------------|--------------|--------------|
+|----|----|----|----|----|
 | Overall accuracy | 0.525 | 0.600 | 0.525 | +0.075 |
 | Macro F1 | 0.539 | 0.419 | 0.281 | −0.120 |
 | F1 — `news` | 0.370 | 0.731 | 0.690 | +0.361 |
@@ -401,13 +396,30 @@ The baseline in the main table above is the run with my definitions
      spread table; the Target and Verdict columns are yours. -->
 ```
 
+**Spread across three seeds** (device: `mps`, Apple Silicon GPU; 3
+epochs, lr 2e-5, batch 16):
+
+| Measure          | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|------------------|---------|--------|-----------|--------|
+| Overall accuracy | 0.525   | 0.500  | 0.650     | 0.150  |
+| Macro F1         | 0.281   | 0.226  | 0.467     | 0.241  |
+| F1 — `question`  | 0.154   | 0.000  | 0.609     | 0.609  |
+| F1 — `news`      | 0.690   | 0.678  | 0.792     | 0.114  |
+| F1 — `take`      | 0.000   | 0.000  | 0.000     | 0.000  |
+
+Accuracy moved 0.150 across seeds. With only 40 test posts, one split is
+not a stable measure.
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
-|-----------|--------|---------|--------|-----------|---------|
-| 1\.       |        |         |        |           |         |
-| 2\.       |        |         |        |           |         |
-| 3\.       |        |         |        |           |         |
-| 4\.       |        |         |        |           |         |
-| 5\.       |        |         |        |           |         |
+|----|----|----|----|----|----|
+| 1\. Overall accuracy | ≥ 0.70 | 0.525 | 0.500 | 0.650 | MISSED |
+| 2\. `news` F1 | ≥ 0.80 | 0.690 | 0.678 | 0.792 | MISSED |
+| 3\. `take` F1 ≥ 0.45 and `question` F1 ≥ 0.60 | both | take 0.000 / question 0.154 | take 0.000 / question 0.000 | take 0.000 / question 0.609 | MISSED |
+| 4\. Most-confident third minus least-confident third accuracy | ≥ 0.15 | 0.846 − 0.077 = 0.769 | 1.000 − 0.000 = 1.000 | 0.923 − 0.538 = 0.385 | MET |
+| 5\. `question` recall | ≥ 0.60 | 0.091 | 0.000 | 0.636 | MISSED |
+
+(I've missed more target than hit, unlike all the assignments before,
+where I almost met all of them...)
 
 ### Confusion matrix
 
@@ -416,16 +428,26 @@ The baseline in the main table above is the run with my definitions
      An image of a matrix earns nothing. -->
 ```
 
-| true  predicted |     |     |     |
-|-----------------|-----|-----|-----|
-| \*\*\*\*        |     |     |     |
-| \*\*\*\*        |     |     |     |
-| \*\*\*\*        |     |     |     |
+Seed 42:
+
+| true \predicted | question | news | take |
+|-----------------|----------|------|------|
+| **question**    | 1        | 10   | 0    |
+| **news**        | 0        | 20   | 0    |
+| **take**        | 1        | 8    | 0    |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
+
+10 real `question` posts were called `news`, and 0 went the other way; 8
+real `take` posts were also called `news`, again with 0 the other way.
+The notebook says a lopsided direction usually points at labelling, but
+here both minority labels collapse into `news`, and `question` and
+`take` are almost never confused with each other. So the model didn't
+learn the wrong boundary. It learned no boundary at all and defaulted to
+my 51% majority label.
 
 ------------------------------------------------------------------------
 
@@ -436,13 +458,13 @@ The baseline in the main table above is the run with my definitions
      all three seeds, not turn up sometimes. -->
 ```
 
-| \#  | Criterion | Target | Verdict | How I decided |
-|-----|-----------|--------|---------|---------------|
-| 1   |           |        |         |               |
-| 2   |           |        |         |               |
-| 3   |           |        |         |               |
-| 4   |           |        |         |               |
-| 5   |           |        |         |               |
+| \# | Criterion | Target | Verdict | How I decided |
+|----|----|----|----|----|
+| 1 | Overall accuracy | ≥ 0.70 on all three seeds | MISSED | 0.525, 0.500, 0.650. None of the three reached 0.70; the best seed was still 5 points short |
+| 2 | `news` F1 | ≥ 0.80 on all three seeds | MISSED | 0.690, 0.678, 0.792. Seed 2024 came closest but all three are under 0.80 |
+| 3 | `take` F1 ≥ 0.45 and `question` F1 ≥ 0.60 | all three seeds | MISSED | `take` was 0.000 on every seed. `question` cleared 0.60 only on seed 2024 (0.609) |
+| 4 | Most-confident third minus least-confident third | ≥ 0.15 on all three seeds | MET | 0.769, 1.000, 0.385, all above 0.15. But the gap comes from the collapse |
+| 5 | `question` recall | ≥ 0.60 on all three seeds | MISSED | 0.091, 0.000, 0.636. Only seed 2024 passed; seed 7 found none of the 11 |
 
 **Diagnoses**
 
@@ -455,7 +477,23 @@ The baseline in the main table above is the run with my definitions
      ⚠️ Use your agreement report as evidence. It is the only instrument you
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
+     
 ```
+
+**Criteria 1, 2, 3, 5: the model is undertrained and collapses to
+`news`.** On seed 42 it predicted `news` for 38 of 40 posts. Validation
+loss was still falling at epoch 3 on all three seeds, so I think
+training stopped too early. The zero-shot baseline reached 0.600
+accuracy on the same posts, so the task is learnable.
+
+**Criterion 3 (`take`) also has too few examples and a weak
+definition.** `take` scored 0.000 on every seed. It's my thinnest label,
+and the baseline also scored 0.000 on `take` with my definition but
+0.414 with just the word "take".
+
+My agreement check found only 1 loosely applied rule in 30, and my
+matrix has almost no question-take confusion, so the misses come from
+the model, not inconsistent labels.
 
 ------------------------------------------------------------------------
 
@@ -469,7 +507,7 @@ The baseline in the main table above is the run with my definitions
      from those definitions and those decision rules. -->
 ```
 
-**Agreement rate:** \_\_\_ / 30 = \_\_\_%
+**Agreement rate:** 28 / 30 = 93%
 
 ```{=html}
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
@@ -495,31 +533,79 @@ The baseline in the main table above is the run with my definitions
      what you did across your own 200. -->
 ```
 
-**1.** \> *The post:* \> \> *Staff said / I said:* \> \> *My call, and
-why:* \> \> *Which pile:*
+**1.**
 
-**2.** \> *The post:* \> \> *Staff said / I said:* \> \> *My call, and
-why:* \> \> *Which pile:*
+> *The post:* "Ran the same loop in 4C and in 24C within a fortnight,
+> same effort by heart rate. 90 seconds slower in the heat over six
+> miles. People keep saying heat costs you 'a bit' and it's more than
+> that."
+>
+> *Staff said / I said:* `analysis` / `hot_take`
+>
+> *My call, and why:* Staff is right. I read "it's more than that" as a
+> confident claim and treated the run as decoration. But rule 1 asks
+> whether the fact carries the argument, and it does. I let the small
+> sample decide, and the rule doesn't ask about sample size.
+>
+> *Which pile:* (a).
+
+**2.**
+
+> *The post:* "Three of us ran the same session on the same day,
+> different shoes, within 10 seconds of each other over 5 miles. I'm not
+> saying shoes do nothing, but whatever they do was smaller than the
+> noise between three people."
+>
+> *Staff said / I said:* `analysis` / `hot_take`
+>
+> *My call, and why:* I still think I am right. The post does cite a
+> checkable fact. It's offered as support without being able to support
+> it, which is close to rule 1. The taxonomy never says whether a fact
+> has to be *able* to support the claim, or only be *used* to.
+>
+> *Which pile:* (b).
 
 **What the pattern in my disagreements tells me:**
+
+I tend to set a higher bar for "support" than the written rule does,
+judging how *good* the evidence is rather than whether the argument
+*rests on* it.
 
 ------------------------------------------------------------------------
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** `EPOCHS` from 3 to 10 in section 2 of the notebook.
+Nothing else changed.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** the before-run collapsed to `news`,
+and validation loss was still falling at epoch 3 on every seed. The
+model stopped training while it was still learning, after only 36
+optimizer steps.
 
 ### Run Log — After
 
+Device: `mps` (Apple Silicon GPU); 10 epochs, lr 2e-5, batch 16.
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
-|-----------|--------|---------|--------|-----------|---------|
-| 1\.       |        |         |        |           |         |
-| 2\.       |        |         |        |           |         |
-| 3\.       |        |         |        |           |         |
-| 4\.       |        |         |        |           |         |
-| 5\.       |        |         |        |           |         |
+|----|----|----|----|----|----|
+| 1\. Overall accuracy | ≥ 0.70 | 0.725 | 0.750 | 0.625 | MISSED |
+| 2\. `news` F1 | ≥ 0.80 | 0.826 | 0.870 | 0.780 | MISSED |
+| 3\. `take` F1 ≥ 0.45 and `question` F1 ≥ 0.60 | both | take 0.286 / question 0.800 | take 0.200 / question 0.750 | take 0.000 / question 0.720 | MISSED |
+| 4\. Most-confident third minus least-confident third accuracy | ≥ 0.15 | 0.769 − 0.538 = 0.231 | 1.000 − 0.538 = 0.462 | 0.923 − 0.308 = 0.615 | MET |
+| 5\. `question` recall | ≥ 0.60 | 0.727 | 0.818 | 0.818 | MET |
+
+Accuracy moved 0.125 across seeds (0.625 to 0.750), still more than 10
+points, so with 40 test posts per split my dataset is too small for a
+stable measure.
+
+**Confusion matrix after (seed 42):**
+
+| true \predicted | question | news | take |
+|-----------------|----------|------|------|
+| **question**    | 8        | 1    | 2    |
+| **news**        | 0        | 19   | 1    |
+| **take**        | 1        | 6    | 2    |
 
 **Did it help, and how do I know:**
 
@@ -528,15 +614,41 @@ why:* \> \> *Which pile:*
      interesting result and earns full credit. -->
 ```
 
+Yes for `question` and `news`, no for `take`. Mean accuracy across the
+three seeds went from 0.558 to 0.700, and mean macro F1 from 0.325 to
+0.581. Criterion 5 flipped from MISSED to MET.
+
+Criteria 1 and 2 now pass on seeds 42 and 7 and miss only on seed 2024,
+so they are still MISSED. On the seed 42 split, the one the baseline was
+scored on, the trained model now beats the baseline. The model no longer
+calls everything news, but `take` is still mostly wrong. Criterion 4 is
+still MET.
+
 ------------------------------------------------------------------------
 
 ## What's Still Broken
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
+-   **Criterion 3:** `take` F1 is 0.286, 0.200 and 0.000 even after the
+    fix. Next I'd add about 30 more `take` posts, and rewrite the `take`
+    definition. I stopped because this unit allows one change and keeps
+    the labels and taxonomy fixed.
+-   **Criteria 1 and 2:** Both pass on two of three seeds and miss only
+    on seed 2024. Most remaining errors are `take` posts called `news`,
+    so fixing `take` is also how I'd fix these. I stopped for the same
+    reason.
+
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
+
+I meant `take` to capture the poster's own view, joke or feeling, but
+the model learned that a post about F1 facts or events is `news` unless
+it has an obvious question in it: 15 of 27 `take` posts went to `news`,
+9 to `question`, and only 3 stayed `take`. It learned `question` from
+question wording and `news` as the default, and never found what makes a
+post a `take`.
 
 ```{=html}
 <!-- ═════════════════════════════════════════════════════════════════════
