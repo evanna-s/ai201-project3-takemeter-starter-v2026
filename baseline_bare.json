@@ -1,0 +1,234 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 40,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": false,
+  "scores": {
+    "n": 40,
+    "accuracy": 0.525,
+    "f1_macro": 0.5391656023839931,
+    "per_label": {
+      "news": {
+        "precision": 0.7142857142857143,
+        "recall": 0.25,
+        "f1": 0.37037037037037035,
+        "support": 20
+      },
+      "question": {
+        "precision": 0.7692307692307693,
+        "recall": 0.9090909090909091,
+        "f1": 0.8333333333333333,
+        "support": 11
+      },
+      "take": {
+        "precision": 0.3,
+        "recall": 0.6666666666666666,
+        "f1": 0.41379310344827586,
+        "support": 9
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "Annoying timing quirk in FP1\n\nThe lap timing shows Russel is slower than Antonelli, his time is still running after he crosses the finish line:  \n\n\nhttps://preview.redd.it/7h62wm5cueuh1.png?width=301&amp;format=png&amp;auto=webp&amp;s=481200a41b60f9ba79919d19b6180524c5011464\n\n[](https://preview.redd.it/annoying-timing-quirk-in-fp1-on-f1tv-v0-9052zflcteuh1.png?width=301&amp;format=png&amp;auto=webp&amp;s=30e425a060e11909b6b1203621389e2ebd74f16a)\n\nonly to end up faster by almost a second.\n\n[](https://preview.redd.it/annoying-timing-quirk-in-fp1-on-f1tv-v0-hkg4mhzfteuh1.png?width=300&amp;format=png&amp;auto=webp&amp;s=4fe8e781f6daa133687ed32fcde4fd5c4108db21)\n\nhttps://preview.redd.it/tz1ynzpdueuh1.png?width=300&amp;format=png&amp;auto=webp&amp;s=042a3289537bfae442eeb087922d103c0b624a3f\n\n  \nThis quirk is extremely annoying to me and it's happening every time.",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Throwback to Baku 2025: The on-track chaos was already promised when Lando's grid kid adorably belted out the national anthem at the top of his lungs, leaving the drivers struggling to hold back their laughter during the ceremony.\n\n[https://www.youtube.com/shorts/QgjFUOfoHvs](https://www.youtube.com/shorts/QgjFUOfoHvs)  \nHey Baku please bring this kid back!",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Max on whether RedBull builds the car around him",
+      "gold": "news",
+      "predicted": "question"
+    },
+    {
+      "text": "Congratulations to Lance Stroll for Completing his 1st Full Race This Year\n\nFirst race for Lance this year where he not DNF'd or being lapped. Amazing job from him\n\nGreat weekend in general for Aston Martin. Alonso got points for the team and they had a pretty strong weekend",
+      "gold": "take",
+      "predicted": "news"
+    },
+    {
+      "text": "Final Sprint Qualifying Classification - 2026 Singapore Grand Prix",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "[OT] GP3 FPV drone footage - capable of 320km/h (200mph) speeds, similar to ones being tested by F1 for future race coverage",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Max Verstappen takes pole position for the 2026 Bahrain Grand Prix in Malaysia",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Max attended the qualify press conference in shorts and flip flops\n\nMade me laugh hard.",
+      "gold": "take",
+      "predicted": "take"
+    },
+    {
+      "text": "Singapore Grand Prix - Race Strategy &amp; Performance Recap",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "[OC] I built F1 Almanac - An interactive archive of teammate H2Hs, driver connection webs, race visualiser and more\n\nHey r/formula1,\n\nI want to share a passion project I\u2019ve been working on: [F1 Almanac](https://f1almanac.com).\u00a0\n\nLike many of you, I spend way too much time debating driver matchups and hunting down data to back up my takes. I built F1 Almanac to be an all-in-one interactive hub that replaces the endless tab-shuffling between Wikipedia tables, fragmented timing sheets, and scattered databases.\n\nHere is what you can explore:\n\n* **Teammate H2H (Qualifying &amp; Race)**: Pick any team and season to see the complete breakdown of raw time deltas, percentage pace gaps, finishing distributions, and sprint comparisons between any two teammates. See more info [here](https://old.reddit.com/r/formula1/comments/1omcv1n/i_made_a_website_to_compare_quali_and_race_h2h/).\n* **Driver vs. Driver Comparisons\u00a0(Qualifying &amp; Race)**: Compare any two drivers from a season, even if they drove for different teams.\n* **Post-Race Debriefs**: Deep dive into recent Grands Prix with tyre strategy stints, degradation curves, and lap-by-lap pace progression.\n* **Driver &amp; Team Profiles**: Complete historical career timelines, stats and records of your favourite drivers and teams.\u00a0\n* **Season Stats &amp; Standings**: Historical season progression charts and results matrices.\n* **Interactive Teammate Web**: The ultimate \"Six Degrees of Kevin Bacon\" for F1. Explore driver connections and teammate history across the entire history of Formula 1. See more info [here](https://old.reddit.com/r/formula1/comments/1uax2o1/i_built_an_interactive_f1_teammate_network_graph/).\n* **2D Race Visualiser**: Relive races through an interactive replay scrubber showing relative track positions and intervals throughout the race (available for races from 2023 onwards, with Circle of Doom views back to 1996). Link [here](https://f1almanac.com/r/vis).\n* **Alternative History Sandbox**: For testing every classic \"what-if\" debate without doing manual spreadsheet math. Reimagine any season by editing race results, dropping worst rounds, or swapping scoring rules (e.g. what if Hamilton didn't DNF in Malaysia 2016, how 2021 would look with the 1990s 10-6-4-3-2-1 system, or create your own custom point schemes) with instant points recalculations and shareable links.\n\nCheck it out here: [https://f1almanac.com](https://f1almanac.com)\n\nI'd love to hear your feedback, bugs you spot, or any features you'd like to see next!",
+      "gold": "take",
+      "predicted": "take"
+    },
+    {
+      "text": "A reminder that Battery power will be reduced above 200 km/h in Singapore for safety reasons",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Langkawai Boys trip Triple Header Progress Update\n\nOP: Malaysia P6, Singapore Sprint DNF  \nG dawg: Malaysia DNF, Singapore Sprint DNF  \nAlbino: Malaysia DNF, Singapore Sprint DNF  \nOllieb: Malaysia P14, Singapore Sprint P6  \nGabriii: Malaysia P18, Singapore Sprint DNF  \n55: Malaysia P17, Singapore Sprint P12 (also cursed with the FIA)  \nLando: Malaysia P9, Singapore Sprint P8\n\nWhat\u2019s your prediction for tomorrow?\n\nEdit: Sorry typo Langkawi! Can\u2019t edit title anymore",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Is this difference in 2017 cars to 2025 cars accurate or is it a Bburago inaccuracy?\n\nI have both old and new Bburago models, is this size difference between models a regulation difference or the Bburago's old models are inaccurate?",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Race pace comparison in FP2\n\nFerrari and Redbull looks good in terms of race pace.\n\n[https://f1intelligence.uk/practice-intelligence?race=2026-bahrain-grand-prix-in-malaysia&amp;session=practice\\_2](https://f1intelligence.uk/practice-intelligence?race=2026-bahrain-grand-prix-in-malaysia&amp;session=practice_2)",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "[autosport] Esteban Ocon confirms he's officially a \"free agent\" for 2027",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Is George so far behind Kimi this year because Kimi took a big step in his 2nd year, or because the current cars/rules favor Kimi's Driving Style much more then George's?\n\nIn 2025 George doubled Kimi in points.  George led Kimi in podiums 9-3.  It wasn't close at all\n\nEveryone rightfully said George was the championship favorite going into 2026 after seeing Mercedes' testing performance, and based on his head to head with Kimi in 2025\n\nBut we've all seen what happened, the script has flipped in 2026, and 2026 looks like the reverse of 2026\n\nSo there's only two reasons for this.  Either Kimi made a huge jump in pace his second year, or the new cars and rules favor Kimi alot more then they do George.  Maybe even a mix of both.\n\nMy opinion is, I can't just buy it that Kimi made this much of a jump in one year.  Even Max Verstappen did not have this big of a jump from year 1 to year 2 in F1\n\nI personally think the new car just fits Kimi's driving style so much better then George's.  Kind of like how the new cars benefited Hamilton so much he's closed the gap to Leclerc almost completely\n\nSo for me I think it's 80% the new car favoring Kimi, and 20% Kimi improving with experience",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "[F1] Isack Hadjar will remain with Red Bull Racing in 2027",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Have you bought merch? What did you pay?\n\nPrompted by the craze I see for the Leclerc Singapore cap, I am curious about the average fan\u2019s merch buying habits. (Though I do not know if this sub is representative of the average fan lol)\n\nOkay I sound like a marketing survey lmao but I\u2019m genuinely curious. \n\nHave you bought merch? For how much? Does anyone buy anything other than caps? Where do you buy them, online or in store or at circuits with jacked up prices? Do you regret if or would you do it again? \n\nPersonally, I want to maybe buy a cap for every team so I can do my team/driver of the moment while watching the race lmao but that might be overkill and just a vaguely pleasant thought. I bought the few caps I own when NewEra did sales so like 20-30 dollars?",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Potential for rain on Sunday.",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Gearboxes will not be homologated for 2027, Allowing teams freedom to develop them throughout the season without any restrictions",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Which Track do you think must be on the calendar\n\nBesides the recent addition of Rwanda to the race calendar from the early 2030's what are the other tracks that you guys wanted to see in the race calendar?",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "[ScarbsTech] Not on the FIA doc &amp; missed by me, but not @madtricon. McLaren ran with a more closed wheel fairing in Holland. These can both help smooth the aero wake behind the wheel and by insulating,  transfer heat from the brakes into the wheel/tyre. Both small but subtle effects.\n\n[post](https://xcancel.com/ScarbsTech/status/2091984477639876706#m)",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Rafael C\u00e2mara: How Brazil\u2019s next racing star earned a Haas F1 seat",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Upgrades for the Dutch GP",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Has forumla 1 became a sport that seems to hold back technology?\n\nFormula 1 over the years has always became more complicated, but they seem to change the rules to make them more simple once they become to technical. If you look at the WEC they seem to have accepted the technology and use it. What would f1 be like if they let the teams invent and run their own technology?\n\nFor example active suspension, DAS system, the F duck system and the mass damper ETC",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Advice for cota race 2027\n\nGood afternoon all\n\nMy wife and i have the f1 experience which includes Thursday to Sunday  \nWe are going to skip Friday(more then likely)  \nWe are staying with a friend of mine who is only about 4miles from the circuit  \nWe have turn 12 reserved seating\n\nMy questions are for Thursday our event start time is 5:30pm  \nWhat time do we need to leave to arrive there without any hiccups meaning how is traffic on a Thursday evening to the track  \nAnd for the rest of the days depending on how much we want to watch when should we leave since its only about a 12min drive\n\nMy other question is should i go ahead and reserve some uber rides since the prices i know will increase and lock in a low price\n\nAny advice helps\n\nThanks",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "The degradation number teams will obsess over\n\nPirelli measured Friday degradation at roughly **+0.20 to +0.30 sec per lap** under the Friday conditions. At **0.30 sec/lap**, a tire could theoretically be around **4.2 seconds slower by lap 15** than at the start of the stint, ignoring fuel burn and other effects. Pirelli said the degradation was high enough that **two or potentially more stops could be competitive** which is exactly what the C2/C3/C4 allocation was designed to encourage.\n\nCurious to see which tire generates the lowest total race time!",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Is anyone else annoyed by the driver interviews order?\n\nMaybe I\u2019m overreacting but I am so sick of the new-ish way they do the post-race and post-quali interviews. It\u2019s so awkward and disjointed to have all three stand on screen and go p1, then awkwardly ask them to stick around while you interview p2, p3, then p1 again. Just go back to having one driver at a time and not jumping around everywhere.\n\nWhen I first saw this I was like, okay they\u2019re trying something new and it sucks. Why is it still around??",
+      "gold": "take",
+      "predicted": "question"
+    },
+    {
+      "text": "With Rafael C\u00e2mara joining Haas for next season, has there ever been a teammate pairing closer in age before?\n\nWith Oliver Bearman being born on May 8, 2005 and Rafael C\u00e2mara born on May 5, 2005, this means that there is only three days between them. Has there ever been a driver pairing in a team with the two drivers being closer in age than this? It's also worth noting that I believe (but could be wrong) that this years Haas pairing is also the tallest driver pairing in history as well! So I guess they're going for records.\n\nWas Haas's goal to save on the budget cap by only having one party and one cake to pay for? Haha",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Some Reasons why Mercedes wasn't able to utilise Upgrade in Sepang . How Top 4 team Chassis gives them Advantage in different Tracks\n\nIt seems adding downforce to the car made their car less mechanical compliant than redbull and ferrari. As you need stiff suspension to add downforce just like mclaren and ferrari did and reaped the benefits in hungary, zandvoort, madrid , spain etc . Or you need ftm wing to produce downforce with slightly less drag.\n\n1. ferrari have made versatile car with good front bite as well as stable rear due to high downforce. The only negative is they deforms front tyres(specially soft compound) due to front end bite with high downforce.\n2. redbull have high mechanical compliance with good front end bite as seen from kerbs and bumps in monaco, austria ,baku, sepang but they lacks downforce to rivals.\n3. Their pre baku floor stalled when their car was aerodynamically loaded in lateral load corners of hungary, zandvoort,madrid,spain, japan, silverstone. so they lost chunk of downforce and had snap oversteer at exit which slid their rear tyres causing overheating and degradation. it was the issue especially on low fuel or harder compound of tyres.\n4. mercedes had similar mechanical compliance to redbull as seen in monaco,baku, austria, monza, sepang etc. but they lacked downforce to mclaren and ferrari which means they lost wins in spain, hungary, zandvoort, barely silverstone, and almost lost in miami, japan, madrid(vsc). In adding downforce they made their suspension stiffer which lost their mechanical compliance and produced more drag.\n5. Mclaren are faster to climb the speed due to shorter gear ratio but it gets stagnated so they dont reach top speed like mercedes/alpine/williams does. Mclaren run stiff suspension to get that downforce , which destroys them in low speed corners or hard braking zones like monaco, austria, baku etc. But that downforce helped them in lateral load corners of hungary, zandvoort, madrid, japan, miami etc and even spain. Silverstone and Spa have higher speed needed , but that short gear ratio stagnated their speed, so they really struggled there.\n6. See the ghost lap, how mclaren and ferrari are able to hit maximum apex speed while mercedes isnt able to, and redbull is even inferior.\n7. Top4 teams: Mclaren have highest drag due to high downforce from their suspension, ferrari have 2nd highest drag, mercedes 3rd, redbull have lowest drag and lowest downforce of top4 team.\n8. Fans claiming that only engine is difference from ferrari winning from mclaren, mercedes and redbull dont understand that different chasis behaves differently. Otherwise they would have done better than mercedes and redbull in monaco.\n9. Small turbo helps ferrari in starts and hampers them in straights. Big turbo of redbull hampers them in starts but gives low drag and high straightline speed. Ferrari looks way worse in straights then they should have been with their engine. It is still inferior engine but not that bad as it appears due to their chassis.\n10. In sepang, mercedes drag increased after adding downforce and made them less advantageous in mechanical compliant track like sepang. Mercedes will feel better in Singapore with better downforce and stable rear.\n11. Drivers who prefer stable rear have mostly dominated singapore as they are able to produce less overheating of rear tyres than oversteer/ loose rear style preferring drivers. Like vettel, lewis, alonso, perez and sainz. Only time oversteery driver george won is in 2025 , the season you cant overtake after turn 1. Lando still prefers more stable rear so he also did better here. for one lap pace oversteery drivers are good in singapore but for whole race their race pace suffers due to rear tyre overheating",
+      "gold": "take",
+      "predicted": "take"
+    },
+    {
+      "text": "Sepang..... Boy have you delivered!",
+      "gold": "take",
+      "predicted": "news"
+    },
+    {
+      "text": "Most Successful weekend of Max Verstappen in 2026\n\n**First Sprint Pole of 2026**\n\n**First Sprint Pole at Singapore**\n\n**First Sprint Win at Singapore** \n\n**First Pole at Singapore** \n\n**First Win at Singapore**\n\n**50th Career Pole Position** \n\n**250th Grand Prix** \n\n**Climbs 2 position up in the driver's standings in a single weekend.**\n\nAnything else anyone would like to add ?",
+      "gold": "take",
+      "predicted": "take"
+    },
+    {
+      "text": "Kimi speaking to his new race engineer Giorgio Russell",
+      "gold": "take",
+      "predicted": "take"
+    },
+    {
+      "text": "How do we think Max will cope without GP next year?\n\nAfter seeing how well Max communicates with GP, even without a working radio, and seeing how much everything seems fractured at Ferrari with Lewis, how do we think things will go at Red Bull next year for Max?\n\nI think GP keeps a lid on Max's temper when he gets fiery, and also helps make consise and direct decisions, and I think it might be hard to find another engineer that is able to have this level of trust with Max. Do you think it will actually make much of a difference?",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Legendary DOTD poll in Malaysia",
+      "gold": "take",
+      "predicted": "take"
+    },
+    {
+      "text": "I turned GeoGuessr into a daily F1 guessing game\n\nI was playing GeoGuessr the other day and thought it would be fun to have something similar but with F1 tracks.\n\nSo I made a little game called GridHunt where you try to guess an F1 circuit from a zoomed-in satellite view. Every wrong guess zooms you out a bit more.\n\nThere are 3 tracks to guess every day, and it's completely free.\n\nJust a fun little project I thought I'd share. Would love to hear what you guys think or what I could improve!\n\n[https://gridhunt.io](https://gridhunt.io)\n\n**EDIT:** Didn't expect this to get so much attention lol. I posted this and didn't check Reddit again until I got home, had no idea it blew up.\n\nI've been working on this for a little over 2 months as a fun side project, so it's really cool seeing so many people try it out.\n\nThanks for all the support and feedback! I've been going through the comments and will be working on fixing the bugs and making things run smoother. If you notice anything else or have suggestions, please let me know. Really appreciate it guys!",
+      "gold": "question",
+      "predicted": "take"
+    },
+    {
+      "text": "2026 - Singapore GP: Q (3 pics)",
+      "gold": "news",
+      "predicted": "question"
+    },
+    {
+      "text": "Both McLarens make contact on final lap",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "A look at the updated FTM on the SF-26, photo by Mateusz Mr\u00f3z",
+      "gold": "news",
+      "predicted": "take"
+    },
+    {
+      "text": "Serious talk - did Russel not have the pace due to his driving skills or was there something else?\n\nI\u2019m kind of a newbie, what caused Antonelli to make up the gap and not only that but also overtake Russel?\n\nI just want to understand if its only driving skills or were there other things involved like being lucky with the SC.\n\nDoes Russel still have a worse engine? I remember reading about it and Toto saying theres something different between the two cars but cant explain it",
+      "gold": "question",
+      "predicted": "question"
+    }
+  ]
+}
